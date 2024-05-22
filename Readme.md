@@ -1,7 +1,7 @@
 # Проект «Большое путешествие»
 
 * Студент: [Елизавета Румянцева](https://up.htmlacademy.ru/ecmascript-individual/2/user/2477015).
-* Наставник: `Неизвестно`.
+* Наставник: Rail Sakhaviev
 
 ---
 
