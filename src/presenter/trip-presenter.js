@@ -24,7 +24,11 @@ export default class TripPresenter {
     render(new NewTripPointForm(), this.listContainer.getElement());
 
     for (let i = 0; i < this.points.length; i++) {
-      render(new TripPointView({ point: this.points[i] }), this.listContainer.getElement());
+      render(new TripPointView ({
+        point: this.points[i],
+        offers: [...this.pointModel.getOffersById(this.points[i].type, this.points[i].offers)],
+        destination: this.pointModel.getDestinationById(this.points[i].destination)
+      }), this.listContainer.getElement());
     }
   }
 }
