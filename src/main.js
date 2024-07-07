@@ -7,8 +7,12 @@ const pageMainElement = document.querySelector('.page-body__page-main');
 const filterWrapper = document.querySelector('.trip-controls__filters');
 
 const pointsModel = new PointsModel();
-const tripPresenter = new TripPresenter({ listContainer: pageMainElement, pointsModel });
+const tripPresenter = new TripPresenter({
+  listContainer: pageMainElement,
+  pointsModel
+});
 
 render(new FilterView, filterWrapper);
-pointsModel.init();
 tripPresenter.init();
+pointsModel.init();
+

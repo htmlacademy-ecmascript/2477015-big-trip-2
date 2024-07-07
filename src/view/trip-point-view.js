@@ -1,12 +1,11 @@
-import { DATE_TIME_FORMAT } from './constants';
+import { DATE_TIME_FORMAT } from '../const.js';
 import { createElement } from '../render.js';
 import { humanizeDate, getDuration } from '../utils.js';
 
-
 const createTripPointTemplete = (point) => {
-  const { type, name, startTime, endTime, isFavorite, price, offers } = point;
+  const { type, destination, dateFrom, dateTo, isFavorite, price, offers } = point;
 
-  const createOfferListTemplate = offers.map((offer) => (
+  const createOfferTemplate = offers.map((offer) => (
     `${offer ? `<li class="event__offer">
       <span class="event__offer-title">${offer.offers.title}</span>
       &plus;&euro;&nbsp;
@@ -16,25 +15,25 @@ const createTripPointTemplete = (point) => {
   return `
           <li class="trip-events__item">
             <div class="event">
-              <time class="event__date" datetime=${startTime}>${humanizeDate(startTime, DATE_TIME_FORMAT.date)}</time>
+              <time class="event__date" datetime=${dateFrom}>${humanizeDate(dateFrom, DATE_TIME_FORMAT.date)}</time>
               <div class="event__type">
                 <img class="event__type-icon" width="42" height="42" src="img/icons/${type}.png" alt="Event type icon">
               </div>
-              <h3 class="event__title">${type} ${name}</h3>
+              <h3 class="event__title">${type} ${destination.name}</h3>
               <div class="event__schedule">
                 <p class="event__time">
-                  <time class="event__start-time" datetime=${startTime}>${humanizeDate(startTime, DATE_TIME_FORMAT.time)}</time>
+                  <time class="event__start-time" datetime=${dateTo}>${humanizeDate(dateTo, DATE_TIME_FORMAT.time)}</time>
                   &mdash;
-                  <time class="event__end-time" datetime=${endTime}>${humanizeDate(endTime, DATE_TIME_FORMAT.time)}</time>
+                  <time class="event__end-time" datetime=${dateTo}>${humanizeDate(dateTo, DATE_TIME_FORMAT.time)}</time>
                 </p>
-                <p class="event__duration">${getDuration(startTime, endTime)}</p>
+                <p class="event__duration">${getDuration(dateFrom, dateTo)}</p>
               </div>
               <p class="event__price">
                 &euro;&nbsp;<span class="event__price-value">${price}</span>
               </p>
               <h4 class="visually-hidden">Offers:</h4>
               <ul class="event__selected-offers">
-              ${ createOfferListTemplate }
+              ${ createOfferTemplate }
               </ul>
               <button class="event__favorite-btn ${isFavorite ? 'event__favorite-btn--active' : ''}" type="button">
                 <span class="visually-hidden">Add to favorite</span>

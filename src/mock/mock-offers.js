@@ -1,4 +1,4 @@
-import {getRandomInteger} from '../utils';
+import { getRandomInteger, getRandomArrayElement } from '../utils.js';
 
 export const mockOffers = [
   {
@@ -166,3 +166,11 @@ export const mockOffers = [
     ]
   }
 ];
+
+export const getOffersIds = (typeOffers) => {
+  const offersByType = mockOffers.find((offerByType) => offerByType.type === typeOffers);
+  const offersId = offersByType.offers.map((offer) => offer.id);
+  const chosenOffersId = getRandomArrayElement(offersId, getRandomInteger(offersId.length));
+
+  return chosenOffersId;
+};

@@ -1,5 +1,14 @@
-import {getRandomArrayElement, getRandomInteger, getRandomBoolean} from '../utils';
+import { POINTS_TYPES } from '../const.js';
+import {
+  getRandomArrayElement,
+  getRandomInteger,
+  getRandomBoolean,
+  getRandomDate
+} from '../utils.js';
+import { mockDestinations } from './mock-descriptions.js';
+import { getOffersIds } from './mock-offers.js';
 
+/*
 const mockPoints = [
   {
     id: 'f4b62099-293f-4c3d-a702-94eec4a2808c',
@@ -116,7 +125,20 @@ const mockPoints = [
     type: 'restaurant'
   }
 ];
+*/
 
-export function getRandomPoints() {
-  return getRandomArrayElement(mockPoints);
-}
+export const getRandomPoints = () => {
+  const tripPointType = getRandomArrayElement(POINTS_TYPES);
+  const tripDestination = mockDestinations[getRandomInteger(mockDestinations.length)].id;
+
+  return {
+    id: crypto.randomUUID(),
+    basePrice: getRandomInteger(500),
+    dateFrom: getRandomDate(new Date(2024, 7, 7), new Date(2024, 7, 10)),
+    dateTo: getRandomDate(new Date(2024, 7, 10), new Date(2024, 7, 15)),
+    destination: tripDestination,
+    isFavorite: getRandomBoolean(0.5),
+    offers: getOffersIds(tripPointType),
+    type: tripPointType,
+  };
+};

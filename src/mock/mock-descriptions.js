@@ -1,4 +1,4 @@
-import {getRandomInteger} from '../utils';
+import { getRandomInteger } from '../utils.js';
 
 export const mockDestinations = [
   {
@@ -7,7 +7,7 @@ export const mockDestinations = [
     name: 'San Diego',
     pictures: [
       {
-        src: `https://loremflickr.com/248/152?random=${getRandomInteger(50)}`,
+        src: `https://loremflickr.com/248/152?random=${ getRandomInteger(50) }`,
         description: 'San Diego building'
       }
     ]
@@ -18,11 +18,11 @@ export const mockDestinations = [
     name: 'Denver',
     pictures: [
       {
-        src: `https://loremflickr.com/248/152?random=${getRandomInteger(50)}`,
+        src: `https://loremflickr.com/248/152?random=${ getRandomInteger(50) }`,
         description: 'Denver attractions'
       },
       {
-        src: `https://loremflickr.com/248/152?random=${getRandomInteger(50)}`,
+        src: `https://loremflickr.com/248/152?random=${ getRandomInteger(50) }`,
         description: 'Denver buildings'
       },
     ]
@@ -33,11 +33,11 @@ export const mockDestinations = [
     name: ' Los Angeles',
     pictures: [
       {
-        src: `https://loremflickr.com/248/152?random=${getRandomInteger(50)}`,
+        src: `https://loremflickr.com/248/152?random=${ getRandomInteger(50) }`,
         description: 'Los Angeles attractions'
       },
       {
-        src: `https://loremflickr.com/248/152?random=${getRandomInteger(50)}`,
+        src: `https://loremflickr.com/248/152?random=${ getRandomInteger(50) }`,
         description: 'Los Angeles buildings'
       }
     ]
