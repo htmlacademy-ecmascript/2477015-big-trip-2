@@ -7,15 +7,17 @@ import { render } from '../render.js';
 export default class TripPresenter {
   tripListComponent = new TripListView();
 
-  constructor({ listContainer, pointsModel }) {
+  constructor({ listContainer, pointsModel, offersModel, destinationsModel}) {
     this.listContainer = listContainer;
     this.pointsModel = pointsModel;
+    this.destinationsModel = destinationsModel;
+    this.offersModel = offersModel;
   }
 
   init() {
     this.points = [...this.pointsModel.getPoints()];
-    this.offers = [...this.pointsModel.getOffers()];
-    this.destinations = [...this.pointsModel.getDestinations()];
+    this.offers = [...this.offersModel.getOffers()];
+    this.destinations = [...this.destinationsModel.getDestinations()];
 
     render(new SortView(), this.listContainer);
     render(this.tripListComponent, this.listContainer);
