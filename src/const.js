@@ -1,11 +1,11 @@
 export const POINTS_COUNT = 3;
 
-export const DATE_TIME_FORMAT = {
+export const dateTimeFormat = {
   time: 'HH:mm',
   date: 'MMM DD',
 };
 
-export const POINTS_TYPES = [
+export const pointsTypes = [
   'taxi',
   'bus',
   'train',

@@ -3,18 +3,11 @@ import duration from 'dayjs/plugin/duration';
 
 dayjs.extend(duration);
 
-const getRandomArrayLength = (items) => (
-  items[Math.floor(Math.random() * items.length)]
-);
-
-export const getRandomArrayElement = (array) => (
-  [...new Set(Array.from({length: getRandomArrayLength(array) + 1},
-    () => array[getRandomArrayLength(array)]))]
-);
-
 export const getRandomInteger = (max) => (
-  Math.floor(Math.random * max)
+  Math.floor(Math.random() * max)
 );
+
+export const getRandomArrayElement = (array) => array[getRandomInteger(array.length)];
 
 export const getRandomDate = (start, end) => new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
 
