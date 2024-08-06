@@ -1,30 +1,40 @@
-import NewTripPointForm from '../view/new-trip-point-form-view.js';
-import EditTripPointForm from '../view/edit-trip-point-form-view.js';
-import FilterView from '../view/filter-view.js';
+import TripPointForm from '../view/trip-point-form-view.js';
 import TripListView from '../view/trip-list-view.js';
 import SortView from '../view/sort-view.js';
 import TripPointView from '../view/trip-point-view.js';
 import { render } from '../render.js';
 
-const POINTS_NUMBER = 3;
-
 export default class TripPresenter {
-  sortComponent = new SortView();
   tripListComponent = new TripListView();
 
-  constructor({ listContainer }) {
+  constructor({ listContainer, pointsModel, offersModel, destinationsModel}) {
     this.listContainer = listContainer;
+    this.pointsModel = pointsModel;
+    this.destinationsModel = destinationsModel;
+    this.offersModel = offersModel;
   }
 
   init() {
-    render(new FilterView(), this.listContainer.getElement());
-    render(this.sortComponent, this.listContainer);
-    render(this.tripListComponent, this.listContainer);
-    render(new EditTripPointForm(), this.listContainer.getElement());
-    render(new NewTripPointForm(), this.listContainer.getElement());
+    this.points = [...this.pointsModel.getPoints()];
+    this.offers = [...this.offersModel.getOffers()];
+    this.destinations = [...this.destinationsModel.getDestinations()];
 
-    for (let i = 0; i < POINTS_NUMBER; i++) {
-      render(new TripPointView(), this.listContainer.getElement());
+    render(new SortView(), this.listContainer);
+    render(this.tripListComponent, this.listContainer);
+
+    render(new TripPointForm({
+      point: this.points[0],
+      offers: this.offers,
+      destinations: this.destinations
+    }), this.tripEventListElement.getElement());
+
+    for (let i = 1; i < this.points.length; i++) {
+      const point = new TripPointView ({
+        point: this.points[i],
+        offers: this.offers,
+        destinations: this.destinations
+      });
+      render(point, this.listContainer.getElement());
     }
   }
 }
